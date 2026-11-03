@@ -1,6 +1,6 @@
 # README.md
 
-# Object-Oriented Programming Assignment - Week 2
+# Object-Oriented Programming
 
 ## Questions
 
