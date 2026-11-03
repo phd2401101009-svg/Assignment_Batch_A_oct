@@ -1,141 +1,110 @@
-# C++ Dynamic Memory & Class Practice Assignments
+# README.md
 
-This repository contains C++ implementations and automated verification for two core OOP and memory management assignments.
+# Object-Oriented Programming Assignment - Week 2
 
----
+## Questions
 
-## Question 1: Dynamic Array Allocation and Resizing
+1. WAP where there are two classes, Tiger and Lion, each with its own set of characteristics. Overload the `>` (greater than) operator to compare objects of the two classes.
 
-### Problem Statement
-Write a C++ program to dynamically create an array of type `Person` (where a `Person` has characteristics: `name`, `age`, `height`, `gender`, and `gpa`) to store the data of 500 persons. Subsequently, resize this array dynamically to hold data for 600 persons. Navigate the resized array to find and print the average age, height, and GPA for all 600 persons.
+2. WAP to overload the pre-increment and post-increment operators in the same class.
 
-### Expected Functionality
-1. Dynamically allocate memory for an array of 500 `Person` structures/objects.
-2. Populate initial 500 records.
-3. Dynamically reallocate memory to expand the array capacity from 500 to 600 elements while preserving original data.
-4. Populate the remaining 100 records.
-5. Traverse the entire 600-element array to calculate and output:
-   - Average Age
-   - Average Height
-   - Average GPA
+3. WAP to overload the logical AND operator (`&&`) to perform functions on objects of a class. Think about scenarios where this would work.
 
 ---
 
-## Question 2: Person Class Initialization and Updates
+## Example Test Cases & Expected Outputs
 
-### Problem Statement
-Write a C++ program to create a class named `Person` with characteristics: `name`, `age`, `height`, `gender`, and `gpa`. 
-- Include member functions to initialize the object data.
-- Include an `update` member function to modify the `age`, `height`, and `gpa` of an existing `Person` object.
-- Provide display methods to verify data before and after modification.
+### Question 1 (`q1.cpp`)
+**Sample Output:**
+```text
+Tiger is greater than Lion.
+```
 
-### Expected Functionality
-1. Encapsulate person attributes inside a `Person` class.
-2. Use constructor or explicit `init()` method to set initial attribute values.
-3. Use an `update()` method to modify `age`, `height`, and `gpa`.
-4. Output initial and updated object states.
+### Question 2 (`q2.cpp`)
+**Sample Output:**
+```text
+Pre-increment: 11
+Post-increment: 11 (Next: 12)
+```
 
----
-
-## Test Examples
-
-### Question 1 Examples
-
-#### Test Example 1.1 (Standard Small Dataset - Scaled Concept Validation)
-* **Input Dataset Overview**: 600 records with uniform values across all entries.
-  - 600 entries: Age = `20`, Height = `170.0`, GPA = `3.5`
-* **Expected Output**:
-  ```text
-  Average Age: 20.00
-  Average Height: 170.00
-  Average GPA: 3.50
-
-  ### Test Example 1.2 (Variable Value Distribution)
-* **Input Dataset Overview**: First 500 entries have fixed set A; additional 100 entries have fixed set B.
-  - 500 entries: Age = 20, Height = 160.0, GPA = 3.0
-  - 100 entries: Age = 26, Height = 190.0, GPA = 4.0
-* **Calculation**:
-  - Avg Age = $\frac{(500 \times 20) + (100 \times 26)}{600} = \frac{10000 + 2600}{600} = 21.00$
-  - Avg Height = $\frac{(500 \times 160.0) + (100 \times 190.0)}{600} = \frac{80000 + 19000}{600} = 165.00$
-  - Avg GPA = $\frac{(500 \times 3.0) + (100 \times 4.0)}{600} = \frac{1500 + 400}{600} = 3.17$
-* **Expected Output**:
-  ```text
-  Average Age: 21.00
-  Average Height: 165.00
-  Average GPA: 3.17
-
-  # Question 2 Test Examples
-
-This document outlines the test cases and expected plaintext outputs for Question 2.
-
----
-
-## Test Example 2.1: Basic Update Test
-
-### Parameters
-* **Initial State:**
-  * **Name:** `"Alice"`
-  * **Age:** `20`
-  * **Height:** `165.5`
-  * **Gender:** `'F'`
-  * **GPA:** `3.8`
-* **Update Parameters:**
-  * **Age:** `21`
-  * **Height:** `167.0`
-  * **GPA:** `3.9`
-
-### Expected Output
-```plaintext
-Initial Person:
-Name: Alice, Age: 20, Height: 165.50, Gender: F, GPA: 3.80
-Updated Person:
-Name: Alice, Age: 21, Height: 167.00, Gender: F, GPA: 3.90
+### Question 3 (`q3.cpp`)
+**Sample Output:**
+```text
+Logical AND operator evaluated.
 ```
 
 ---
-
-## Test Example 2.2: Multi-Year Advancement
-
-### Parameters
-* **Initial State:**
-  * **Name:** `"Bob"`
-  * **Age:** `19`
-  * **Height:** `175.0`
-  * **Gender:** `'M'`
-  * **GPA:** `2.9`
-* **Update Parameters:**
-  * **Age:** `22`
-  * **Height:** `180.2`
-  * **GPA:** `3.5`
-
-### Expected Output
-```plaintext
-Initial Person:
-Name: Bob, Age: 19, Height: 175.00, Gender: M, GPA: 2.90
-Updated Person:
-Name: Bob, Age: 22, Height: 180.20, Gender: M, GPA: 3.50
-```
-
 ---
 
-## Test Example 2.3: Graduation / Final Record Update
+# check.sh
 
-### Parameters
-* **Initial State:**
-  * **Name:** `"Charlie"`
-  * **Age:** `21`
-  * **Height:** `182.0`
-  * **Gender:** `'M'`
-  * **GPA:** `3.4`
-* **Update Parameters:**
-  * **Age:** `22`
-  * **Height:** `182.0`
-  * **GPA:** `3.75`
+```bash
+#!/bin/bash
 
-### Expected Output
-```plaintext
-Initial Person:
-Name: Charlie, Age: 21, Height: 182.00, Gender: M, GPA: 3.40
-Updated Person:
-Name: Charlie, Age: 22, Height: 182.00, Gender: M, GPA: 3.75
+# Color codes for output formatting
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
+
+echo "========================================"
+echo " Running Automated Tests for Assignment "
+echo "========================================"
+
+FAILED=0
+
+run_test() {
+    local q_num=$1
+    local src_file=$2
+
+    echo -e "\n--- Testing Question $q_num ($src_file) ---"
+
+    if [ ! -f "$src_file" ]; then
+        echo -e "${RED}[FAIL] File $src_file not found.${NC}"
+        FAILED=1
+        return
+    fi
+
+    # Compile source file
+    g++ -std=c++11 "$src_file" -o "q${q_num}_executable" 2>/dev/null
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}[FAIL] Compilation failed for $src_file.${NC}"
+        FAILED=1
+        return
+    fi
+
+    # Execute and check for exit status
+    ./q${q_num}_executable > /dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}[PASS] Question $q_num compiled and executed successfully!${NC}"
+    else
+        echo -e "${RED}[FAIL] Question $q_num encountered a runtime error.${NC}"
+        FAILED=1
+    fi
+
+    rm -f "q${q_num}_executable"
+}
+
+# --- TEST QUESTION 1 ---
+Q1_FILE=""
+if [ -f "q1.cpp" ]; then Q1_FILE="q1.cpp"; elif [ -f "q1" ]; then Q1_FILE="q1"; fi
+run_test "1" "$Q1_FILE"
+
+# --- TEST QUESTION 2 ---
+Q2_FILE=""
+if [ -f "q2.cpp" ]; then Q2_FILE="q2.cpp"; elif [ -f "q2" ]; then Q2_FILE="q2"; fi
+run_test "2" "$Q2_FILE"
+
+# --- TEST QUESTION 3 ---
+Q3_FILE=""
+if [ -f "q3.cpp" ]; then Q3_FILE="q3.cpp"; elif [ -f "q3" ]; then Q3_FILE="q3"; fi
+run_test "3" "$Q3_FILE"
+
+echo -e "\n========================================"
+if [ $FAILED -eq 0 ]; then
+    echo -e "${GREEN}All checks passed successfully!${NC}"
+    exit 0
+else
+    echo -e "${RED}Some tests failed. Please review your code.${NC}"
+    exit 1
+fi
 ```
